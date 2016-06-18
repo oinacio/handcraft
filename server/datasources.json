@@ -1,0 +1,15 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "cloudantCraftDB": {
+    "url": "https://6081a28c-fb6c-4ed6-bc37-e68a7c3f9c08-bluemix:5993929ccbc3f953204717e25d8e2e52b49597920792cd43d84aac9fc0793728@6081a28c-fb6c-4ed6-bc37-e68a7c3f9c08-bluemix.cloudant.com",
+    "database": "handcraft",
+    "username": "shopischedgdonswourchess",
+    "password": "8c33bed153606ac3bdc0e2f7902fc18800bdf0c5",
+    "name": "cloudantCraftDB",
+    "modelIndex": "",
+    "connector": "cloudant"
+  }
+}

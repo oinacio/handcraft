@@ -1,0 +1,176 @@
+/* global angular */
+/* jshint maxlen: 105 */
+angular
+.module('app')
+.controller('AddHandcraftCtrl', ['$scope', 'Handcraft', '$state',
+function ($scope, Handcraft, $state) {
+$scope.action = 'Add';
+$scope.handcraft = {};
+
+$scope.submitForm = function () {
+Handcraft
+.create({
+name: $scope.handcraft.name,
+image: $scope.handcraft.image,
+segment: $scope.handcraft.segment,
+feedstock: $scope.handcraft.feedstock,
+category: $scope.handcraft.category,
+//label: $scope.handcraft.label,
+price: $scope.handcraft.price,
+description: $scope.handcraft.description
+})
+.$promise
+.then(function () {
+$state.go('all-comments');
+});
+};
+}])
+.controller('AllHandcraftCtrl', ['$scope', 'Handcraft', '$state', '$stateParams', function (
+$scope, Handcraft, $state, $stateParams) {
+
+$scope.handcraft = Handcraft.find({});
+
+
+
+}])
+.controller('ViewDetailsCtrl', ['$scope', '$q', 'Handcraft', 'Comment', 'Customer', 'Favorite' ,'$rootScope', '$state', '$stateParams',
+function ($scope, $q, Handcraft, Comment, Customer, Favorite ,$rootScope, $state, $stateParams) {
+
+
+$scope.comment = {
+rating: 5,
+description: '',
+favorite: false
+};
+
+$scope.hand = {};
+$scope.fav = false;
+$scope.favdisplay = 'Add Favorite';
+
+$scope.makeFavorite = function() {
+$scope.fav = !$scope.fav;
+$scope.favdisplay = $scope.fav ? 'Your Favorite' : 'Add Favorite';
+
+};
+
+
+/*        Handcraft
+.findById({
+id: $stateParams.id,
+filter: {
+include: [
+{
+relation: 'comments', // include the owner object
+scope: { // further filter the owner object
+fields: ['rating', 'comment'], // only show two fields
+include: { // include orders for the owner
+relation: 'customer',
+scope: { // further filter the owner object
+fields: ['email']
+//where: {orderId: 5} // only select order with id 5
+}
+}
+}
+}
+]}})
+.$promise
+.then(function(data) {
+$scope.hand = data;
+console.log('data: ' + JSON.stringify(data));
+});  */
+
+Handcraft
+.findById({
+id: $stateParams.id,
+filter: {
+include: [
+{
+relation: 'comments',
+
+},
+{
+relation: 'customer'
+
+},
+
+]
+}
+})
+.$promise
+.then(function (data) {
+$scope.hand = data;
+
+/*        console.log('data: ' + JSON.stringify(data)); */
+
+});
+
+
+$scope.submitComment = function () {
+console.log('comment.favorite '+ $scope.comment.favorite);
+Comment
+.create({
+rating: $scope.comment.rating,
+comment: $scope.comment.comment,
+handcraftId: $stateParams.id,
+favorite: $scope.comment.favorite
+})
+.$promise
+.then(function () {
+//   $state.go('all-comments');
+$scope.comment = {
+rating: 0,
+description: '',
+favorite: $scope.fav
+
+};
+});
+};
+
+
+$scope.$on('$destroy', function(event) {
+console.log('Check, 11, 22!');
+console.log(' status favdisplay + fav = ' + $scope.fav + ' '+ $scope.favdisplay);
+
+if($scope.fav) {
+Favorite
+.create({handcraftId: $stateParams.id})
+.$promise
+.then(function () {
+//   $state.go('all-comments');
+
+
+}
+);
+}
+});
+
+
+}])               
+.controller('ViewsFavoritesCtrl', ['$scope', 'Comment', '$rootScope',
+function($scope, Comment, $rootScope) {
+$scope.Comment = Comment.find({
+filter: {
+where: {
+publisherId: $rootScope.currentUser.id
+},
+include: [
+'handcraft',
+'customer'
+]
+}
+});
+}])
+.controller('MyReviewsController', ['$scope', 'Review', '$rootScope',
+function($scope, Review, $rootScope) {
+$scope.reviews = Review.find({
+filter: {
+where: {
+publisherId: $rootScope.currentUser.id
+},
+include: [
+'coffeeShop',
+'reviewer'
+]
+}
+});
+}]);

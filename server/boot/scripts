@@ -1,0 +1,79 @@
+
+var async = require('async');
+module.exports = function(app) {
+  //data sources
+  var cloudantCraftDB = app.dataSources.cloudantCraftDB;
+ 
+  //create all models
+  async.parallel({
+    customers: async.apply(createCustomers),
+    handcrafts: async.apply(createHandcrafts),
+  }, function(err, results) {
+    if (err) throw err;
+    createComments(results.customers, results.handcrafts, function(err) {
+      console.log('> models created sucessfully');
+    });
+  });
+  //create customers
+  function createCustomers(cb) {
+    cloudantCraftDB.automigrate('Customer', function(err) {
+      if (err) return cb(err);
+      var Customer = app.models.Customer;
+      Customer.create([
+        {email: 'AAA@aaa.com', password: 'abcdef'},
+        {email: 'BBB@bbb.com', password: 'abcdef'},
+        {email: 'CCC@ccc.com', password: 'abcdef'}
+      ], cb);
+    });
+  }
+  //create Handcraft
+  function createHandcrafts(cb) {
+    cloudantCraftDB.automigrate('Handcraft', function(err) {
+      if (err) return cb(err);
+      var Handcraft = app.models.Handcraft;
+      Handcraft.create([
+        {name: 'The Leon', catogory: 'Child'},
+        {name: 'Sky', category: 'Man'},
+        {name: 'Liro', category: 'Wall'},
+      ], cb);
+    });
+  }
+  //create Comments
+  function createComments(customers, handcrafts, cb) {
+    cloudantCraftDB.automigrate('Comment', function(err) {
+      if (err) return cb(err);
+      var Comment = app.models.Comment;
+      var DAY_IN_MILLISECONDS = 1000 * 60 * 60 * 24;
+      Comment.create([
+        {
+          //date: Date.now() - (DAY_IN_MILLISECONDS * 4),
+          rating: 5,
+          comment: 'A must must fantastic.',
+          publisherId: customers[0].id,
+          handcraftId: handcrafts[0].id,
+        },
+        {
+          //date: Date.now() - (DAY_IN_MILLISECONDS * 3),
+          rating: 5,
+          comment: 'Ho my Good',
+          publisherId: customers[1].id,
+          handcraftId: handcrafts[0].id,
+        },
+        {
+        //  date: Date.now() - (DAY_IN_MILLISECONDS * 2),
+          rating: 4,
+          comment: 'It was ok.',
+          publisherId: customers[1].id,
+          handcraftId: handcrafts[1].id,
+        },
+        {
+       //   date: Date.now() - (DAY_IN_MILLISECONDS),
+          rating: 4,
+          comment: 'Ok, this perfect.',
+          publisherId: customers[2].id,
+          handcraftId: handcrafts[2].id,
+        }
+      ], cb);
+    });
+  }
+};

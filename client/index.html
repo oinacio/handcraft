@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" ng-app= "app">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>study Coursera Website Handcraft </title>
+
+    <!-- Bootstrap Core CSS
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="styles/mystyles.css" rel="stylesheet">
+    -->
+
+    <!-- Custom CSS -->
+
+
+
+    <link href="styles/shop-homepage.css" rel="stylesheet">
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/bootstrap-social.css" rel="stylesheet">
+     
+
+
+   <!-- <link href="bootstrap/css/handcraft.css" rel="stylesheet"> -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ui-sref= "all-handcraft">Handcraft_ Art</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+         <ul class="nav navbar-nav">
+             <li>
+                 <a ui-sref="all-handcraft" ui-sref-active="active"><span class="glyphicon glyphicon-home"></span> Home</a>
+             </li>
+             <li ng-show="currentUser">
+              <a ui-sref= "add-handcraft" ui-sref-active= "active"><span class="glyphicon glyphicon-pushpin"></span> Add Handcraft</a>
+          </li>
+          <li ng-show="currentUser">
+                 <a ui-sref="my-favorites" ui-sref-active="active"><span class="glyphicon glyphicon-heart"></span> Favorites</a>
+             </li>
+          
+           <li ng-show="currentUser">
+                 <a ui-sref="my-handcrafts" ui-sref-active="active"><span class="glyphicon glyphicon-gift"></span> My Handcrafts</a>
+             </li>
+         <!--   <li>
+            <a ui-sref="all-comments" ui-sref-active="active">All comments</a>
+           </li> -->
+                                    
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li ng-show="currentUser">
+                <a ui-sref="logout" ui-sref-active="active"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+            </li>
+            <li ng-hide="currentUser">
+                <a ui-sref="sign-up" ui-sref-active="active"><span class="glyphicon glyphicon-user"></span> Sign up</a>
+            </li>
+            <li ng-hide="currentUser">
+                <a ui-sref="login" ui-sref-active="active" class="btn btn-link" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+                <!--  <a ui-sref="login" ui-sref-active="active" data-toggle="modal" data-target="#loginModal"  ><span class="glyphicon glyphicon-log-in"></span> Log in</a>    ng-click="clickToOpen()" -->
+
+             </li>
+          <!--  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+        </ul>
+    </div>
+            <!-- /.navbar-collapse -->
+</div>
+        <!-- /.container -->
+    </nav>
+
+   
+
+    <!-- content -->
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Show Your Own Handcraft Gallery</p>
+                <div class="thumbnail" >
+
+            <a ui-sref="view-details({id: hand.id})">
+                    <img src= "https://s-media-cache-ak0.pinimg.com/736x/5d/62/9a/5d629a7ab971ee1c9388df80e5d9bb64.jpg" alt= "">
+            </a>
+            <div class="caption">
+                <span class="badge badge-important pull-right">Classic</span>
+               <!-- <h4 class="pull-right">{{hand.category}}</h4>-->
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim, nisl non gravida commodo, sem felis dapibus eros, et ornare elit nisl eget diam. Nam</p>
+            </div>
+            <div class="ratings">
+                <span class="label label-info">Paper</span>
+                <span class="label label-success">Weaving patterns</span>
+                <p class="pull-right">Top</p>
+                <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                     <span class="glyphicon glyphicon-star"></span>
+                      <span class="glyphicon glyphicon-star"></span>
+                       <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                </p>
+            </div>
+        </div>
+            </div>
+            <div class= "col-md-9">
+                <div class= "col-md-12">
+                    <main ui-view></main>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- end content -->
+
+    <!-- start footer -->
+    <footer class="row-footer">
+        <div class="container">
+                <div class="row">
+                        <div class="col-xs-5 col-xs-offset-1 col-sm-2 col-sm-offset-1">
+                            
+                        </div>
+                        <div class="col-xs-6 col-sm-5">
+                                <h5>Our Address</h5>
+                                <address>
+                            121, Zone Beer Top<br>
+                            Long Dose, Terebi<br>
+                            JANICE<br>
+                            <i class="fa fa-phone"></i>: +111 8455 321<br>
+                            <i class="fa fa-fax"></i>: +215 2222 9878<br>
+                            <i class="fa fa-envelope"></i>:
+                                         <a href="mailto:handcraf-art@handcratart.com">
+                                         handcraf-art@handcratart.com</a>
+                                </address>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                                <div class="nav navbar-nav" style="padding: 40px 10px;">
+                                        <a class="btn btn-social-icon btn-google-plus" href="http://google.com/+"><i class="fa fa-google-plus"></i></a>
+                                        <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook"></i></a>
+                                        <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin"></i></a>
+                                        <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter"></i></a>
+                                        <a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube"></i></a>
+                                        <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o"></i></a>
+                                </div>
+                        </div>
+                        <div class="col-xs-12">
+                                <p style="padding:10px;"></p>
+                                <p align= "center">© Copyright 2016 Handcraft_Art</p>
+                        </div>
+                </div>
+        </div>
+</footer>
+<!-- end footer -->
+
+
+
+
+
+
+
+
+    <!-- Bootstrap Core JavaScript -->
+
+     <script src= "bower_components/jquery/dist/jquery.min.js"></script>
+    <script src= "bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+   <!--angular  control -->
+    <script src="vendor/angular.js"></script>
+    <script src="vendor/angular-resource.js"></script>
+    <script src="vendor/angular-ui-router.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services/lb-services.js"></script>
+    <script src="js/controllers/auth.js"></script>
+    <script src="js/controllers/comments.js"></script>
+    <script src="js/services/auth.js"></script>
+    <script src="js/controllers/handcraft.js"></script>
+
+
+
+
+
+
+
+</body>
+
+</html>

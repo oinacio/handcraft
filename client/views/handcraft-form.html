@@ -1,0 +1,178 @@
+
+        <h3>{{action}} Handcraft</h3>
+
+
+        <form class="form-horizontal" role="form" name="feedbackForm" ng-submit="submitForm()" novalidate>
+            <div class="form-group">
+                <div ng-class= "{'has-error' : feedbackForm.name1.$error.required && !feedbackForm.name1.$pristine}">
+                <label for="name1" class="col-md-2 control-label">Art</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" id="name1" name="name1" placeholder="Enter Art Name " ng-model="handcraft.name" maxlength="15" required>
+                    <span ng-show="feedbackForm.name1.$error.required && !feedbackForm.name1.$pristine" class="help-block"> Art Name is required</span>
+                </div>
+                </div>
+            <div ng-class="{'has-error' : feedbackForm.image1.$error.required && !feedbackForm.image1.$pristine}">
+                <label for="image1" class="col-md-1 control-label"></label>
+                <div class="col-md-4"     >
+                    <input type= "text" class= "form-control" id="image1" name="image1"  ng-model= "handcraft.image" placeholder="Enter Image link" required>
+                    <span ng-show="feedbackForm.image1.$error.required && !feedbackForm.image1.$pristine" class="help-block">Image link is requerid</span>
+                </div>
+            </div>
+            </div>
+
+            <div class="form-group">
+                <div ng-class= "{'has-error' : feedbackForm.segment1.$error.required && !feedbackForm.segment1.$pristine}">
+                    <label for="segment1" class="col-md-2 control-label"> </label>
+                    <div class="col-md-2">
+                        <select class="form-control" id="segment1" name="segment1" ng-model= "handcraft.segment" required>
+                            <option value="" selected disabled>Segment</option>
+                            <option value= "Hobby">Hobby</option>
+                            <option value= "Business">Business</option>
+                        </select>
+                        <span ng-show="feedbackForm.segment1.$error.required && !feedbackForm.segment1.$pristine" class="help-block"> Art Segment is required</span>
+                    </div>
+                </div>
+                <div ng-class= "{'has-error' : feedbackForm.category1.$error.required && !feedbackForm.category1.$pristine}">
+                    <label for="category1" class="col-md-1 control-label"> </label>
+                    <div class="col-md-2">
+                        <select class="form-control" id="category1" name="category1" ng-model= "handcraft.category" required>
+                            <option value="" selected disabled>Category</option>
+                            <option value = "Paint">Paint</option>
+                            <option value = "Sculpture">Sculpture</option>
+                            <option value = "Origami">Origami</option>
+                            <option value = "Montage">Montage</option>
+                            <option value = "Modeling">Modeling</option>
+                        </select>
+                        <span ng-show="feedbackForm.category1.$error.required && !feedbackForm.category1.$pristine" class="help-block"> Art Segment is required</span>
+                    </div>
+                </div>
+                <div ng-class="{'has-error' : feedbackForm.feedstock1.$error.required && !feedbackForm.feedstock1.$pristine}">
+                    <label for="feedstock1" class="col-md-1 control-label"> </label>
+                    <div class="col-md-3" >
+                        <select class="form-control" id="feedstock1" name="feedstock1" ng-model= "handcraft.feedstock" required>
+                        <option value="" selected disabled>Feedstock</option>
+                            <option value= "Wood">Wood</option>
+                            <option value= "Glass">Glass</option>
+                            <option value= "Plastic">Plastic</option>
+                            <option value= "Clouth">Clouth</option>
+                            <option value= "Paper">Paper</option>
+                            <option value= "Stone">Stone</option>
+                            <option value= "Clay">Clay</option>
+                        </select>
+                        <span ng-show="feedbackForm.feedstock1.$error.required && !feedbackForm.feedstock1.$pristine" class="help-block">Feedstock is requerid</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description1" class="col-md-2 control-label">Description</label>
+                <div class="col-md-10">
+                    <textarea class="form-control" id="description1" name="description1" rows="12" ng-model="handcraft.description"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div actions class="col-md-offset-2 col-md-10">
+                         <button class="btn btn-default" ng-disabled="feedbackForm.$invalid">{{action}} Handcraft</button>
+                    <!-- <button class="btn btn-default">{{action}} Handcraft</button>-->
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+
+
+
+
+
+<!--
+   <section>
+    <form class="form-horizontal" ng-submit="submitForm()">
+        <div class="form-group">
+            <label for="name" class="control-label">Art name:</label>
+            <input type="text" class="form-control" id="name" ng-model="handcraft.name">
+
+            <div class= "form-group">
+            <label for="image" class="control-label">Image:</label>
+            <input type="file" class="form-control" id="image" ng-model="handcraft.image">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class= "form-group">
+            <label for="category" class="control-label">Segment:</label>
+                <select ng-model= "handcraft.category">
+                    <option value = "option-1">Paint</option>
+                    <option value = "option-2">Sculpture</option>
+                    <option value = "option-4">Origami</option>
+                    <option value = "option-3">Montage</option>
+                    <option value = "option-4">Modeling</option>
+                </select>
+            </div>
+            <div class="form-group">
+            <label for="feedstock" class="control-label">Feedstock:</label>
+            <select ng-model= "handcraft.feedstock">
+                <option value= "option-5">Wood</option>
+                <option value= "option-6">Glass</option>
+                <option value= "option-7">Plastic</option>
+                <option value= "option-8">Clouth</option>
+                <option value= "option-9">Paper</option>
+                <option value= "option-10">Stone</option>
+                <option value= "option-11">Clay</option>
+            </select>
+            </div>
+            <div class="form-group">
+            <label for="segment" class="control-label">Segment:</label>
+            <select ng-model= "handcraft.segment">
+                <option value= "option-12">Business</option>
+                <option value= "option-13">Hobby</option>
+            </select>
+            <input type="text" class="form-control" id="category" ng-model="handcraft.category">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="price" class="col-md-2 control-label">Price:</label>
+            <div class="col-md-2">
+                <input type="number" class="form-control" id="price" ng-model="handcraft.price">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="col-md-2 control-label">Description:</label>
+            <div class="col-md-10">
+                <textarea class="form-control" rows="5" id="exampleInputEmail1" ng-model="handcraft.description"> </textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div actions col-md-offset-2 col-md-2>
+                <button type="submit" class="btn btn-default">{{action}} Handcraft</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+-->
+
+
+<!--
+<section>
+  <form name="form" ng-submit="submitForm()">
+    <fieldset>
+      <legend>{{action}} Handcraft form</legend>
+
+      <div class= "form-group">
+          <label>Handcraft Name: </label>
+          <input type= "text" ng-model = "handcraft.name">
+      </div>
+      <div class= "form-group">
+          <label>Category: </label>
+          <input type= "text" ng-model= "handcraft.category">
+      </div>
+
+      <div class="actions">
+        <label></label>
+        <button>{{action}} Handcraft</button>
+      </div>
+    </fieldset>
+  </form>
+</section> -->

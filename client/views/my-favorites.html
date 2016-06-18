@@ -1,0 +1,25 @@
+
+
+
+ <ul class="media-list">
+    <li class="media" ng-repeat="r in favorites.slice().reverse()">
+        <div class="media-left media-middle"> 
+            
+
+                <img class="media-object img-thumbnail" ng-src="{{r.handcraft.image}}" alt="r.handcraft.name">
+           
+        </div>
+        <div class="media-body">
+            <h2 class="media-heading">{{r.handcraft.name}}
+                        <span class= "label label-info label-xs">{{r.handcraft.category}}</span>
+                            <span class= "badge">{{r.handcraft.feedstock}} </span>
+            </h2>
+            <p >{{r.handcraft.description}}</p>
+        </div>
+     <div class= "media-right media-middle">
+        <div class="actions" ng-show="currentUser">
+      <button ui-sref="delete-favorite({ id: r.id })" class="btn btn-danger"><i class="fa fa-hand-scissors-o"></i> Delete</button>
+    </div>
+     </div>
+    </li>
+</ul>

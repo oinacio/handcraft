@@ -1,0 +1,46 @@
+
+
+
+<div id="loginModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Header Section -->
+            <div class="modal-header">
+                <h2>Sign up form</h2>
+            </div>
+
+            <!-- Body Section -->
+            <div class="modal-body">
+                <form class="form col-md-9" ng-submit="register()">
+
+                    <input type="text" class="form-control input-lg" ng-model="user.email" placeholder="Email" required autofocus />
+                    <p class="hint" ng-show="form.email.$error.required && submitted">Email is
+                        required</p>
+                    <input type="password" class="form-control input-lg" ng-model="user.password" placeholder="Password" required />
+                    <p class="hint" ng-show="form.password.$error.required && submitted">
+                        Password is required</p>
+
+                    <label class="checkbox"> <input type="checkbox"
+                                                    value="remember-me" /> Remember me
+                    </label>
+
+                    <div class="actions">
+                        <label></label>
+                        <button class="btn btn-primary btn-lg btn-block">Register</button>
+                    </div>
+
+
+                </form>
+            </div>
+
+            <!-- Footer Section -->
+            <div class="modal-footer">
+                <div class="col-md-9">
+                    <span class="pull-left"><a href="#">Forgot Password?</a></span>
+                    <span><a ui-sref="login" ui-sref-active="active">Log in</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

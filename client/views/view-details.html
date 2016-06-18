@@ -1,0 +1,101 @@
+
+
+
+<ul class="media-list">
+
+    <li class="media">
+
+        <div class="media-left media-middle">
+
+                    <img class="media-object img-thumbnail" ng-src="{{hand.image}}" alt="{{hand.name}}">
+            <span class="label label-pill label-success">{{hand.name}}</span>
+                <span class= "badge">{{hand.feedstock}}</span>
+                
+        </div>
+        <div class="media-body">
+            <h3 class="media-heading">{{hand.name}}
+                <span class= "label label-danger label-xs">{{hand.category}}</span>
+            </h3>
+            <p>{{hand.description}}</p>
+
+        </div>
+    </li>
+</ul>
+
+
+
+<ul class="media-list">
+    <li class="media" ng-repeat="h in hand.comments.slice().reverse()">
+        <div class="media-body">
+            <blockquote>
+                <p>{{h.rating}} Stars</p>
+                <p>{{h.comment}}</p>
+                <footer>{{hand.customer.email}}, {{h.createdAt | date: medium }}</footer>
+            </blockquote>
+        
+        </div>
+    </li>
+</ul>
+
+
+    <ul class="list-unstyled media-list" ng-show= "commentForm.$valid && !commentForm.$pristine">
+        <li class="media">
+            <div class="media-body">
+                <blockquote>
+                    <p>{{comment.rating}} - Star</p>
+                    <p>{{comment.comment}}</p>
+                    <footer>{{h.customer.email}}
+                        {{comment.createdAt | date: medium }}
+                    </footer>
+                </blockquote>
+            </div>
+
+        </li>
+
+
+    </ul>
+
+<form ng-show="currentUser" class="form-horizontal" role= "form" name="commentForm" ng-submit="submitComment()" novalidate>
+<h3>Comments</h3>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Number of star</label>
+        <div class="col-sm-6">
+            <label class="radio-inline">
+                <input type="radio" name="staradio" id="star1" ng-value="1" ng-model="comment.rating"> 1
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="staradio" id="star2" ng-value="2" ng-model="comment.rating"> 2
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="staradio" id="star3" ng-value="3" ng-model="comment.rating"> 3
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="staradio" id="star4" ng-value="4" ng-model="comment.rating"> 4
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="staradio" id="star5" ng-value="5" ng-model="comment.rating" > 5
+            </label>
+        </div>
+        <div class="col-sm-2">
+           <label class="checkbox-inline">
+            <input type="checkbox" value="true" ng-model="comment.favorite" >Add Favorite
+        </label>
+    </div>
+    </div>
+    <div class="form-group" ng-class= "{'has-error' : commentForm.discript.$error.required && !commentForm.discript.$pristine}">
+        <label for="comment" class="col-sm-2 control-label">Your Comments</label>
+        <div class="col-sm-10">
+            <textarea type= "text" class="form-control" id="discript" name="discript" rows="5" ng-model="comment.comment" required ></textarea>
+            <span ng-show= "commentForm.discript.$error.required && !commentForm.discript.$pristine" class= "help-block">Your Comment is required</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary" ng-disabled= "commentForm.$invalid">Submit Comment</button>
+        </div>
+    </div>
+
+</form>
+
+
+

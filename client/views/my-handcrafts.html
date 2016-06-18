@@ -1,0 +1,33 @@
+<div class="col-sm-4 col-lg-4 col-md-4" ng-repeat= "hand in handcrafts.slice().sort().reverse()">
+        <div>
+        <div class="thumbnail" >
+
+            <a ui-sref="view-details({id: hand.id})">
+                    <img ng-src= "{{hand.image}}" alt= "">
+            </a>
+            <div class="caption">
+
+                <span class="badge badge-important pull-right">{{hand.category}}</span>
+               <!-- <h4 class="pull-right">{{hand.category}}</h4>-->
+
+                <p>{{hand.description}}</p>
+
+
+            </div>
+            <div class="ratings">
+                <div class="col-xs-12 col-sm-11 col-sm-offset-1">
+                <div>
+                </div>
+            </div>
+            </div>
+            <div class="btn-group" role="group" aria-label="...">
+                    <a type="button" ui-sref="edit-handcraft({ id: hand.id })" ui-sref-active="active" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                    <a type="button" ui-sref="delete-handcraft({ id: hand.id })" ui-sref-active="active" class="btn btn-danger btn-sm"><i class="fa fa-hand-scissors-o"></i> Delete</a>
+                </div>
+        </div>
+        
+    </div>
+    </div>
+    
+
+

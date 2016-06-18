@@ -1,0 +1,18 @@
+<section>
+   Ups, entrei...
+    <article ng-repeat="f in favorites.slice().reverse()">
+        <header>
+            <h1>{{f.createdAt | date}} | {{f.name}}</h1>
+            <h2>{{f.customer.email}}</h2>
+        </header>
+
+        <p>{{f.category}}&#9733; - {{f.feedstock}}</p>
+
+        <div class="actions" ng-show="currentUser">
+            <button ui-sref="edit-comment({ id: f.id })">Edit</button>
+            <button a ui-sref="delete-comment({ id: f.id })">Delete</button>
+        </div>
+    </article>
+</section>
+
+

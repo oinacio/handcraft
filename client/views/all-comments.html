@@ -1,0 +1,10 @@
+<section>
+  <article ng-repeat="r in comments.slice().sort().reverse()">
+    <header>
+      <h1>{{r.createdAt | date :  "dd.MM.y" }} | {{r.handcraft.name}}</h1>
+      <h2>{{r.customer.email}}</h2>
+      <p>{{r.rating}}&#9733; - {{r.comment}}</p>
+    </header>
+    
+  </article>
+</section>
